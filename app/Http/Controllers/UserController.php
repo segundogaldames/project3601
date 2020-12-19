@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::select('id','nombre')->get();
+        $roles = Role::select('id','nombre')->orderBy('nombre','ASC')->get();
 
         return view('users.create', compact('roles'));
     }
@@ -81,9 +81,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $roles = Role::select('id','nombre')->orderBy('nombre','ASC')->get();
+        return view('users.edit', compact('user','roles'));
     }
 
     /**
@@ -93,9 +94,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|min:4',
+            'email' => 'required|string|email',
+            'role' => 'required|integer',
+            'active' => 'required|integer',
+        ]);
+
+        $user = User::find($user->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->active = $request->active;
+        $user->role_id = $request->role;
+        $user->save();
+
+        return redirect('/users/' . $user->id )->with('success','El usuario se ha modificado correctamente');
     }
 
     /**

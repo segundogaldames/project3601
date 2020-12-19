@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -60,9 +61,12 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
+
     public function show(Role $role)
     {
-        return view('roles.show', compact('role'));
+        #select * from users inner join roles on users.role_id = roles.id where users.role_id = role
+        $users = User::where('role_id', $role->id )->orderBy('name','ASC')->get();
+        return view('roles.show', compact('role','users'));
     }
 
     /**

@@ -6,19 +6,19 @@
         <div class="col-md-8">
             @include('partials._messages')
             <div class="card">
-                <div class="card-header">{{ __('Roles') }} | <a href="{{ route('roles.create') }}" class="btn-light btn-md">Nuevo Rol</a></div>
+                <div class="card-header">{{ __('Nacionalidades') }} | <a href="{{ route('nationalities.create') }}" class="btn-light btn-md">Nueva Nacionalidad</a></div>
 
                 <div class="card-body">
-                    @if (isset($roles) && @count($roles))
+                    @if (isset($nationalities) && @count($nationalities))
                         <table class="table table-hover">
-                            @foreach ($roles as $role)
+                            @foreach ($nationalities as $nationality)
                                 <tr>
-                                    <td><a href="{{ route('roles.show', $role) }}">{{ $role->nombre }}</a></td>
+                                    <td><a href="{{ route('nationalities.show', $nationality) }}">{{ $nationality->nombre }}</a></td>
                                 </tr>
                             @endforeach
                         </table>
                     @else
-                        <p class="text-info">No hay roles registrados</p>
+                        <p class="text-info">No hay nacionalidades registradas</p>
                     @endif
                 </div>
             </div>
