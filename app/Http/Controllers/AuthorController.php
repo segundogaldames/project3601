@@ -51,14 +51,8 @@ class AuthorController extends Controller
     public function setAuthor(Request $request, Nationality $nationality)
     {
         $this->validate($request, [
-            'nombre' => 'required|string|min:4',
+            'nombre' => 'required|string|min:4|unique:authors',
         ]);
-
-        $consulta = Author::where('nombre', $request->nombre)->where('nationality_id', $nationality->id)->first();
-
-        if ($consulta) {
-            return redirect('/nationalities/' . $nationality->id)->with('danger','El autor ya ha sido ingresado... Intente con otro');
-        }
 
         $author = new Author;
         $author->nombre = $request->nombre;
@@ -77,7 +71,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        return view('authors.show', compact('author'));
     }
 
     /**
@@ -88,7 +82,8 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        $nacionalidades = Nationality::select('id','nombre')->orderBy('nombre','ASC')->get();
+        return view('authors.edit', compact('author','nacionalidades'));
     }
 
     /**
@@ -100,7 +95,19 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        #return $request;
+        $this->validate($request, [
+            'nombre' => 'required|string|min:4',
+            'nationality' => 'required|integer',
+        ]);
+
+        $autor = Author::find($author->id);
+        $autor->nombre = $request->nombre;
+        $autor->email = $request->email;
+        $autor->nationality_id = $request->nationality;
+        $autor->save();
+
+        return redirect('/authors/' . $author->id)->with('success','El autor se ha modificado correctamente');
     }
 
     /**

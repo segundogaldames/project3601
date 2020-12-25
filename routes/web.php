@@ -20,10 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/authors/{nationality}','AuthorController@addAuthor')->name('authors.addAuthor');
-Route::post('/authors/{nationality}','AuthorController@setAuthor')->name('authors.setAuthor');
+Route::get('/authors/addAuthor/{nationality}','AuthorController@addAuthor')->name('authors.addAuthor');
+Route::post('/authors/setAuthor/{nationality}','AuthorController@setAuthor')->name('authors.setAuthor');
 
 Route::resource('roles','RoleController');
 Route::resource('users','UserController');
 Route::resource('nationalities','NationalityController');
 Route::resource('authors','AuthorController');
+Route::resource('recursoTipos','RecursoTipoController');

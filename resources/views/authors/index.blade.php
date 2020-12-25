@@ -6,7 +6,7 @@
         <div class="col-md-8">
             @include('partials._messages')
             <div class="card">
-                <div class="card-header">{{ __('Autores') }}</div>
+                <div class="card-header">{{ __('Autores') }} | <a href="{{ route('nationalities.index') }}" class="btn-light">Nacionalidades</a></div>
 
                 <div class="card-body">
                     @if (isset($authors) && @count($authors))
@@ -20,7 +20,7 @@
                                 <tr>
                                     <td><a href="{{ route('authors.show', $author) }}">{{ $author->nombre }}</a></td>
                                     <td>{{ $author->email }}</td>
-                                    <td>{{ $author->nationality->nombre }}</td>
+                                    <td><a href="{{ route('nationalities.show', $author->nationality_id) }}">{{ $author->nationality->nombre }}</a></td>
                                 </tr>
                             @endforeach
                         </table>
