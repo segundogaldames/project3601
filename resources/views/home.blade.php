@@ -18,6 +18,22 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="card-header">{{ __('Editoriales') }}</div>
+
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                           Editoriales
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                           Ciudades
+                        </a>
+                        <a href="{{ route('countries.index') }}" class="list-group-item list-group-item-action" aria-current="true">
+                           Paises
+                        </a>
+                    </div>
+                </div>
                 <div class="card-header">{{ __('Recursos') }}</div>
 
                 <div class="card-body">
