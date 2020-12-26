@@ -19,14 +19,14 @@
                     </div>
                 </div>
 
-                <div class="card-header">{{ __('Editoriales') }}</div>
+                <div class="card-header">{{ __('Casas Publicadoras') }}</div>
 
                 <div class="card-body">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                           Editoriales
+                        <a href="{{ route('publishers.index') }}" class="list-group-item list-group-item-action" aria-current="true">
+                           Casas Publicadoras
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <a href="{{ route('cities.index') }}" class="list-group-item list-group-item-action" aria-current="true">
                            Ciudades
                         </a>
                         <a href="{{ route('countries.index') }}" class="list-group-item list-group-item-action" aria-current="true">

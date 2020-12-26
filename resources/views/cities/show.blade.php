@@ -34,6 +34,36 @@
                     </p>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">{{ __('Casas Publicadoras de ') }} {{ $city->nombre }}</div>
+
+                <div class="card-body">
+                    @if (isset($publishers) && @count($publishers))
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                            </tr>
+                            @foreach ($publishers as $publisher)
+                                <tr>
+                                    <td><a href="{{ route('publishers.show', $publisher) }}">{{ $publisher->nombre }}</a></td>
+                                    <td>
+                                        @if ($publisher->direccion==NULL)
+                                           No informada
+                                        @else
+                                            {{ $publisher->direccion }}
+                                        @endif
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    @else
+                        <p class="text-info">No hay casas publicadoras registradas</p>
+                    @endif
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

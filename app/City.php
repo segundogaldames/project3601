@@ -10,4 +10,9 @@ class City extends Model
     {
     	return $this->belongsTo(Country::class);
     }
+
+    public function publishers()
+    {
+    	return $this->hasMany(Publisher::class);
+    }
 }

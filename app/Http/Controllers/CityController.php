@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Country;
+use App\Publisher;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -69,7 +70,8 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        return view('cities.show', compact('city'));
+        $publishers = Publisher::select('id','nombre','direccion')->where('city_id', $city->id)->orderBy('nombre','ASC')->get();
+        return view('cities.show', compact('city','publishers'));
     }
 
     /**

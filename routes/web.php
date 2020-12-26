@@ -32,3 +32,4 @@ Route::resource('authors','AuthorController');
 Route::resource('recursoTipos','RecursoTipoController');
 Route::resource('countries','CountryController');
 Route::resource('cities', 'CityController');
+Route::resource('publishers','PublisherController');
