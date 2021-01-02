@@ -24,6 +24,8 @@ Route::get('/authors/addAuthor/{nationality}','AuthorController@addAuthor')->nam
 Route::post('/authors/setAuthor/{nationality}','AuthorController@setAuthor')->name('authors.setAuthor');
 Route::get('/cities/addCity/{country}','CityController@addCity')->name('cities.addCity');
 Route::post('/cities/setCity/{country}','CityController@setCity')->name('cities.setCity');
+Route::get('/authorRecursos/addAuthor/{recurso}','AuthorRecursoController@addAuthor')->name('authorRecursos.addAuthor');
+Route::post('/authorRecursos/setAuthor/{recurso}','AuthorRecursoController@setAuthor')->name('authorRecursos.setAuthor');
 
 Route::resource('roles','RoleController');
 Route::resource('users','UserController');
@@ -35,3 +37,5 @@ Route::resource('cities', 'CityController');
 Route::resource('publishers','PublisherController');
 Route::resource('tematicas','TematicaController');
 Route::resource('recursos','RecursoController');
+Route::resource('authorRecursos','AuthorRecursoController');
+Route::resource('copiaEstados','CopiaEstadoController');

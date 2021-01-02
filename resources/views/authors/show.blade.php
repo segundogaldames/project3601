@@ -49,7 +49,28 @@
                 <div class="card-header">Recursos creados por {{ $author->nombre }}</div>
 
                 <div class="card-body">
-
+                    @if (isset($recursos) && @count($recursos))
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Año de Publicación</th>
+                                <th>Casa Publicadora</th>
+                                <th>Tipo</th>
+                                <th>Temática</th>
+                            </tr>
+                            @foreach ($recursos as $recurso)
+                                <tr>
+                                    <td>{{ $recurso->recurso }}</td>
+                                    <td>{{ $recurso->anio_edicion }}</td>
+                                    <td>{{ $recurso->editorial }}</td>
+                                    <td>{{ $recurso->tipo }}</td>
+                                    <td>{{ $recurso->tematica }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    @else
+                        <p class="text-info">No hay recursos asociados</p>
+                    @endif
                 </div>
             </div>
         </div>

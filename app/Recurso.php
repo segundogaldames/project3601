@@ -20,4 +20,9 @@ class Recurso extends Model
     {
     	return $this->belongsTo(Publisher::class);
     }
+
+    public function authorRecursos()
+    {
+        return $this->hasMany(AuthorRecurso::class);
+    }
 }

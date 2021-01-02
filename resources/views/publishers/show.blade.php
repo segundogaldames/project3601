@@ -41,6 +41,32 @@
                     </p>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">{{ __('Recusos Asociados a ') }} {{ $publisher->nombre }} </div>
+
+                <div class="card-body">
+                    @if (isset($publisher->recursos) && @count($publisher->recursos))
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Año de Publicación</th>
+                                <th>Tipo</th>
+                                <th>Temática</th>
+                            </tr>
+                            @foreach ($publisher->recursos as $recurso)
+                                <tr>
+                                    <td><a href="{{ route('recursos.show', $recurso) }}">{{ $recurso->nombre }}</a></td>
+                                    <td>{{ $recurso->anio_edicion }}</td>
+                                    <td>{{ $recurso->recursoTipo->nombre }}</td>
+                                    <td><a href="{{ route('tematicas.show', $recurso->tematica_id) }}">{{ $recurso->tematica->nombre }}</a></td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    @else
+                        <p class="text-info">No hay recursos asociados</p>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 </div>

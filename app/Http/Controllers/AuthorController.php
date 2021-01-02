@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Nationality;
 use Illuminate\Http\Request;
+use DB;
 
 class AuthorController extends Controller
 {
@@ -71,7 +72,16 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return view('authors.show', compact('author'));
+        #uso de query builder
+        $recursos = DB::table('recursos')->select('recursos.id','recursos.nombre as recurso','recursos.anio_edicion','recurso_tipos.nombre as tipo','publishers.nombre as editorial','tematicas.nombre as tematica')
+                    ->join('recurso_tipos','recurso_tipos.id','=','recursos.recurso_tipo_id')
+                    ->join('publishers','publishers.id','=','recursos.publisher_id')
+                    ->join('tematicas','tematicas.id','=','recursos.tematica_id')
+                    ->join('author_recursos','author_recursos.recurso_id','=','recursos.id')
+                    ->join('authors','author_recursos.author_id','=','authors.id')
+                    ->where('authors.id', $author->id)
+                    ->get();
+        return view('authors.show', compact('author','recursos'));
     }
 
     /**

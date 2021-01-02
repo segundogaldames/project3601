@@ -10,4 +10,9 @@ class Author extends Model
     {
     	return $this->belongsTo(Nationality::class);
     }
+
+    public function authorRecursos()
+    {
+        return $this->hasMany(AuthorRecurso::class);
+    }
 }

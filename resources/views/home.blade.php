@@ -41,6 +41,9 @@
                         <a href="{{ route('recursos.index') }}" class="list-group-item list-group-item-action" aria-current="true">
                            Recursos
                         </a>
+                        <a href="{{ route('copiaEstados.index') }}" class="list-group-item list-group-item-action" aria-current="true">
+                           Estado Copias
+                        </a>
                         <a href="{{ route('tematicas.index') }}" class="list-group-item list-group-item-action" aria-current="true">
                            Temáticas
                         </a>

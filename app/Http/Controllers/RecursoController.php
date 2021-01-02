@@ -7,6 +7,7 @@ use App\RecursoTipo;
 use App\Tematica;
 use App\Publisher;
 use Illuminate\Http\Request;
+use DB;
 
 class RecursoController extends Controller
 {
@@ -79,7 +80,13 @@ class RecursoController extends Controller
      */
     public function show(Recurso $recurso)
     {
-        return view('recursos.show', compact('recurso'));
+        #uso de query builder
+        $autores = DB::table('authors')->select('author_recursos.id','authors.nombre as author')
+                    ->join('author_recursos','author_recursos.author_id','=','authors.id')
+                    ->join('recursos','recursos.id','=','author_recursos.recurso_id')
+                    ->where('recursos.id', $recurso->id)
+                    ->get();
+        return view('recursos.show', compact('recurso','autores'));
     }
 
     /**

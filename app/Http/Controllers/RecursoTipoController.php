@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RecursoTipo;
+use App\Recurso;
 use Illuminate\Http\Request;
 
 class RecursoTipoController extends Controller
@@ -56,7 +57,8 @@ class RecursoTipoController extends Controller
      */
     public function show(RecursoTipo $recursoTipo)
     {
-        return view('recursoTipos.show', compact('recursoTipo'));
+        $recursos = Recurso::where('recurso_tipo_id', $recursoTipo->id)->orderBy('nombre','ASC')->get();
+        return view('recursoTipos.show', compact('recursoTipo','recursos'));
     }
 
     /**

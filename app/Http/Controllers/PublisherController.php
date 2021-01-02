@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Publisher;
 use App\City;
+use App\Recurso;
 use Illuminate\Http\Request;
 
 class PublisherController extends Controller

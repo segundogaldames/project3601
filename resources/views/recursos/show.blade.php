@@ -31,6 +31,29 @@
                             <td>{{ $recurso->tematica->nombre }}</td>
                         </tr>
                         <tr>
+                            <th>Autor(es):</th>
+                            <td>
+                                @if (isset($autores) && @count($autores))
+                                    <ul class="list-group">
+                                        @foreach ($autores as $autor)
+                                            <li class="list-group-item">
+                                                {{ $autor->author }} |
+                                                <a href="{{ route('authorRecursos.edit', $autor->id) }}">Cambiar</a> |
+                                                <form method="POST" action="{{ route('authorRecursos.destroy', $autor->id) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-warning btn-sm">Eliminar</button>
+                                                </form>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p class="text-info">Desconocido |
+                                    <a href="{{ route('authorRecursos.addAuthor', $recurso) }}">Agregar Autor</a></p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Creado:</th>
                             <td>{{ $recurso->created_at->format('d-m-Y H:i:s') }}</td>
                         </tr>
@@ -46,6 +69,7 @@
                     <p>
                         <a href="{{ route('recursos.edit', $recurso) }}" class="btn btn-link">Editar</a>
                         <a href="{{ route('recursos.index') }}" class="btn btn-link">Volver</a>
+                        <a href="{{ route('authorRecursos.addAuthor', $recurso) }}" class="btn btn-primary">Agregar Autor(es)</a>
                     </p>
                 </div>
             </div>
