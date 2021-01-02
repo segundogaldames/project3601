@@ -38,8 +38,11 @@
 
                 <div class="card-body">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <a href="{{ route('recursos.index') }}" class="list-group-item list-group-item-action" aria-current="true">
                            Recursos
+                        </a>
+                        <a href="{{ route('tematicas.index') }}" class="list-group-item list-group-item-action" aria-current="true">
+                           Temáticas
                         </a>
                         <a href="{{ route('recursoTipos.index') }}" class="list-group-item list-group-item-action" aria-current="true">
                            Tipo Recursos

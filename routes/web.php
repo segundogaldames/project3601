@@ -33,3 +33,5 @@ Route::resource('recursoTipos','RecursoTipoController');
 Route::resource('countries','CountryController');
 Route::resource('cities', 'CityController');
 Route::resource('publishers','PublisherController');
+Route::resource('tematicas','TematicaController');
+Route::resource('recursos','RecursoController');

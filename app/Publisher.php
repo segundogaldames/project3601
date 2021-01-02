@@ -10,4 +10,9 @@ class Publisher extends Model
     {
     	return $this->belongsTo(City::class);
     }
+
+    public function recursos()
+    {
+    	return $this->hasMany(Recurso::class);
+    }
 }
